@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prescription Refill Form</title>
+</head>
+<body>
+  <h1>Request a Prescription Refill</h1>
+
+  <form id="refillForm">
+    <label>Patient Name:
+      <input type="text" name="patientName" required />
+    </label><br /><br />
+
+    <label>Phone Number:
+      <input type="tel" name="phoneNumber" required />
+    </label><br /><br />
+
+    <label>Prescription Details:
+      <textarea name="prescriptionDetails" required></textarea>
+    </label><br /><br />
+
+    <label>Preferred Pickup Time:
+      <input type="text" name="preferredPickupTime" required />
+    </label><br /><br />
+
+    <button type="submit">Submit Refill Request</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('refillForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('http://localhost:5000/api/refills', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message || "Request submitted!");
+        form.reset();
+      } catch (err) {
+        alert("Failed to submit request. Please try again.");
+        console.error("Error:", err);
+      }
+    });
+  </script>
+</body>
+</html>
