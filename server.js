@@ -1,24 +1,32 @@
+// server.js
+
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+const cors = require('cors'); // Import the cors package
 
 const app = express();
+
+// Enable CORS for all routes
 app.use(cors());
+
+// Your existing middleware and routes
 app.use(express.json());
+const refillRoutes = require('./routes/refills');
+app.use('/api/refills', refillRoutes);
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log(err));
-
-// Routes
-const refillRoutes = require('./routes/refill');
-app.use('/api/refill', refillRoutes);
-
-// Start server
+// MongoDB connection and server start
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('✅ MongoDB connected successfully!');
+    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+  })
+  .catch((error) => {
+    console.error('❌ MongoDB connection error:', error);
+  });
+
+// Basic test route
+app.get('/', (req, res) => {
+  res.send('Hello from ALBOPHAR backend!');
+});
