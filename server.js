@@ -10,10 +10,16 @@ const app = express();
 // Enable CORS for all routes
 app.use(cors());
 
-// Your existing middleware and routes
+// Middleware
 app.use(express.json());
+
+// Import Routes
 const refillRoutes = require('./routes/refills');
+const contactRoutes = require('./routes/contact'); // Import the contact routes
+
+// Register Routes
 app.use('/api/refills', refillRoutes);
+app.use('/api', contactRoutes); // Register the contact route
 
 // MongoDB connection and server start
 const PORT = process.env.PORT || 5000;
