@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Contact Us - ALBOPHAR PHARMACY</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="refills.html">Refill Prescriptions</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="refill-form-section">
+    <div class="container">
+      <h2>Contact Us</h2>
+
+      <div class="form-group">
+        <p><strong>Address:</strong> Kigali City Center, Rwanda</p>
+        <p><strong>Phone:</strong> +250 7817 34089</p>
+        <p><strong>Email:</strong> <a href="mailto:albophar@gmail.com">albophar@gmail.com</a></p>
+        <p><strong>Business Hours:</strong><br> Mon–Sat: 7AM – 10PM<br> Sunday: 9AM – 8PM</p>
+      </div>
+
+      <div class="form-group">
+        <h3>Send us a message</h3>
+        <form id="contactForm">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required placeholder="Enter your name"/>
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email"/>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Type your message here..."></textarea>
+
+          <button type="submit" class="cta-btn">Send Message</button>
+        </form>
+
+        <div id="contactSuccess" class="success-message">
+          <h3>Thank you!</h3>
+          <p>Your message has been received. We'll get back to you shortly.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h3>Find us on the Map</h3>
+        <iframe 
+          src="https://www.google.com/maps?q=Kigali,+Rwanda&output=embed" 
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>ALBOPHAR Pharmacy | Phone: +250 7817 34089 | Email: albophar@gmail.com</p>
+      <p>Business Hours: Mon-Sat 7AM - 10PM | Sun 9AM - 8PM</p>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Simple contact form success message
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("contactForm").style.display = "none";
+      document.getElementById("contactSuccess").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

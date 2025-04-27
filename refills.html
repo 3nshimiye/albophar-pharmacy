@@ -1,129 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prescription Refill Form</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f7f7f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .form-container {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 450px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #2d7a2d;
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      resize: none;
-      font-size: 14px;
-    }
-
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      background-color: #2d7a2d;
-      color: white;
-      border: none;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    button:hover {
-      background-color: #256d25;
-    }
-
-    .success-message {
-      margin-top: 15px;
-      color: green;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Refill Prescriptions - ALBOPHAR PHARMACY</title>
+    <link rel="stylesheet" href="assets/styles.css"> <!-- Link to external CSS -->
 </head>
-
 <body>
-  <div class="form-container">
-    <h2>Prescription Refill</h2>
-    <form id="refillForm">
-      <label for="patientName">Patient Name:</label>
-      <input type="text" id="patientName" name="patientName" required />
 
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="tel" id="phoneNumber" name="phoneNumber" required />
+    <!-- Header with navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="refills.html">Refill Prescriptions</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-      <label for="prescriptionDetails">Prescription Details:</label>
-      <textarea id="prescriptionDetails" name="prescriptionDetails" rows="4" required></textarea>
+    <!-- Refill Prescription Form Section -->
+    <section class="refill-form-section">
+        <div class="container">
+            <h2>Refill Your Prescription</h2>
+            <form id="refillForm">
+                <!-- Patient Details Section -->
+                <div class="form-group">
+                    <label for="patientName">Patient Name</label>
+                    <input type="text" id="patientName" name="patientName" required placeholder="Enter your name">
+                </div>
 
-      <label for="preferredPickupTime">Preferred Pickup Time:</label>
-      <input type="text" id="preferredPickupTime" name="preferredPickupTime" required />
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" pattern="\d{10}" maxlength="10" required placeholder="Enter your phone number (10 digits)">
+                </div>
 
-      <button type="submit">Submit Refill</button>
-      <div class="success-message" id="successMessage"></div>
-    </form>
-  </div>
+                <!-- Prescription Details Section -->
+                <div class="form-group">
+                    <label for="prescriptionDetails">Prescription Details</label>
+                    <textarea id="prescriptionDetails" name="prescriptionDetails" required placeholder="Provide details of the prescription or upload an image (bullet points may help)"></textarea>
+                </div>
 
-  <script>
-    document.getElementById("refillForm").addEventListener("submit", async function (e) {
-      e.preventDefault();
+                <!-- Preferred Pickup Time Section -->
+                <div class="form-group">
+                    <label for="pickupTime">Preferred Pickup Time</label>
+                    <input type="datetime-local" id="pickupTime" name="pickupTime" required>
+                </div>
 
-      const formData = {
-        patientName: document.getElementById("patientName").value,
-        phoneNumber: document.getElementById("phoneNumber").value,
-        prescriptionDetails: document.getElementById("prescriptionDetails").value,
-        preferredPickupTime: document.getElementById("preferredPickupTime").value,
-      };
+                <!-- Prescription Upload Section -->
+                <div class="form-group">
+                    <label for="prescriptionFile">Upload Prescription</label>
+                    <input type="file" id="prescriptionFile" name="prescriptionFile" accept=".jpg, .jpeg, .png, .pdf">
+                </div>
 
-      try {
-        const response = await fetch("http://localhost:5000/api/refills", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <button type="submit" class="cta-btn">Submit Request</button>
+                </div>
+            </form>
 
-        const result = await response.json();
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message">
+                <h3>Thank you for your submission!</h3>
+                <p>Your refill request has been successfully submitted. We will notify you when it's ready for pickup.</p>
+            </div>
+        </div>
+    </section>
 
-        if (response.ok) {
-          document.getElementById("successMessage").textContent = result.message;
-          document.getElementById("refillForm").reset();
-        } else {
-          document.getElementById("successMessage").textContent = "Submission failed.";
-        }
-      } catch (err) {
-        console.error("Error submitting form:", err);
-        document.getElementById("successMessage").textContent = "Server error.";
-      }
-    });
-  </script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>ALBOPHAR Pharmacy | Phone: +250 7817 34089 | Email: albophar@gmail.com</p>
+            <p>Business Hours: Mon-Sat 7AM - 10PM | Sun 9AM - 8PM</p>
+            <ul>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script> <!-- Link to JavaScript -->
 </body>
 </html>
