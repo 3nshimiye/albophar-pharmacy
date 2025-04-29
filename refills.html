@@ -27,7 +27,7 @@
     <section class="refill-form-section">
         <div class="container">
             <h2>Refill Your Prescription</h2>
-            <form id="refillForm">
+            <form id="refillForm" enctype="multipart/form-data">
                 <!-- Patient Details Section -->
                 <div class="form-group">
                     <label for="patientName">Patient Name</label>
@@ -48,13 +48,14 @@
                 <!-- Preferred Pickup Time Section -->
                 <div class="form-group">
                     <label for="pickupTime">Preferred Pickup Time</label>
-                    <input type="datetime-local" id="pickupTime" name="pickupTime" required>
+                    <input type="datetime-local" id="pickupTime" name="preferredPickupTime" required>
                 </div>
 
                 <!-- Prescription Upload Section -->
                 <div class="form-group">
                     <label for="prescriptionFile">Upload Prescription</label>
                     <input type="file" id="prescriptionFile" name="prescriptionFile" accept=".jpg, .jpeg, .png, .pdf">
+                    <p id="fileNameDisplay"></p>
                 </div>
 
                 <!-- Submit Button -->
@@ -63,11 +64,8 @@
                 </div>
             </form>
 
-            <!-- Success Message -->
-            <div id="successMessage" class="success-message">
-                <h3>Thank you for your submission!</h3>
-                <p>Your refill request has been successfully submitted. We will notify you when it's ready for pickup.</p>
-            </div>
+            <!-- Dynamic Status/Success Message -->
+            <div id="refillStatusMessage" class="success-message" style="display: none;"></div>
         </div>
     </section>
 
