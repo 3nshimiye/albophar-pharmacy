@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PAYMENT FORM - ALBOPHAR Pharmacy</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="refills.html">Refills</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Payment Form</h1>
+        <p>Securely process your payment for ALBOPHAR Pharmacy services.</p>
+        <p>Required fields are followed by
+            <strong><span aria-label="required">*</span></strong>.
+        </p>
+    </section>
+    
+    <!-- Payment Form Section -->
+    <section>
+        <h2>Payment information</h2>
+        <p>
+            <label for="card">
+            <span>Card type:</span>
+            </label>
+            <select id="card" name="user-card">
+            <option value="visa">Visa</option>
+            <option value="mc">Mastercard</option>
+            <option value="amex">American Express</option>
+            </select>
+        </p>
+        <p>
+            <label for="number">
+            <span>Card number:</span>
+            <strong><span aria-label="required">*</span></strong>
+            </label>
+            <input type="tel" id="number" name="card-number" required />
+        </p>
+        <p>
+            <label for="expiration">
+            <span>Expiration date:</span>
+            <strong><span aria-label="required">*</span></strong>
+            </label>
+            <input
+                type="text"
+                id="expiration"
+                name="expiration"
+                required
+                placeholder="MM/YY"
+                pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" />
+        </p>
+    </section>
+
+    <section>
+        <p>
+            <button type="submit">Validate the payment</button>
+        </p>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ALBOPHAR Pharmacy. All rights reserved.</p>
+    </footer>
+</body>
+</html>
