@@ -2,96 +2,99 @@
 <html lang="en">
 <head>
     <meta name="description" content="Socius Pharmacy - A partner you can trust for healthcare and wellness. Offering a wide range of pharmaceuticals and wellness products.">
-    <meta name="keywords" content="retail pharmacy, online pharmacy, community pharmacy, wellness, medications, pharmaceuticals, vitamins, supplements, Kigali City, Rwanda">   
+    <meta name="keywords" content="retail pharmacy, online pharmacy, community pharmacy, wellness, medications, pharmaceuticals, vitamins, supplements, Kigali City, Rwanda">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Socius Pharmacy</title>
+    <title>Socius Pharmacy | Prescription Refill</title>
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-    <!-- Header with navigation -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                &lt;&gt;
-                <li><a href="shop.html">Shop</a></li>
-                &lt;&gt;
-                <li><a href="refills.html"class="active">Prescription Refill</a></li>
-                &lt;&gt;
-                <li><a href="services.html">Services</a></li>
-                &lt;&gt;
-                <li><a href="theknownest.html">The KnowNest</a></li>
-                &lt;&gt;
-                <li><a href="contact.html">Contact us</a></li>
-            </ul>
-        </nav>
-    </header>
-
-  <!-- Main Section -->
-  <main class="form-container">
-    <h1>Prescription Refill Request</h1>
-    <p>Need a refill? Fill in your details and we’ll get it ready for pickup or delivery.</p>
-
-    <form id="refillForm">
-      <label for="patientName">Patient Name:</label>
-      <input type="text" name="patientName" id="patientName" required />
-
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="tel" name="phoneNumber" id="phoneNumber" required />
-
-      <label for="prescriptionDetails">Prescription Details:</label>
-      <textarea name="prescriptionDetails" id="prescriptionDetails" required></textarea>
-
-      <label for="preferredPickupTime">Preferred Pickup Time:</label>
-      <input type="text" name="preferredPickupTime" id="preferredPickupTime" placeholder="e.g., Tomorrow at 3PM" required />
-
-      <button type="submit" class="cta-btn">Submit Refill Request</button>
-    </form>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <p>Socius Pharmacy | Phone: +250 7817 34089 | Email: sociuspharmacy@gmail.com</p>
-      <p>Business Hours: Mon–Sat 7AM–10PM | Sun 9AM–8PM</p>
-      <ul>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-      </ul>
+    <!-- Top Header Bar -->
+    <div class="top-bar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="Socius Pharmacy Logo"></a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="user-actions">
+            <a href="basket.html">Basket</a>
+            <a href="account.html">Account</a>
+        </div>
     </div>
-  </footer>
 
-  <!-- JavaScript -->
-  <script>
-    const form = document.getElementById('refillForm');
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="refills.html" class="active">Prescription Refill</a></li>
+            <li><a href="theknownest.html">The KnowNest</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    <!-- Refill Form Section -->
+    <main class="form-container">
+        <h1>Prescription Refill Request</h1>
+        <p>Need a refill? Fill in your details and we’ll get it ready for pickup or delivery.</p>
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+        <form id="refillForm">
+            <label for="patientName">Patient Name</label>
+            <input type="text" name="patientName" id="patientName" required placeholder="Enter your full name">
 
-      try {
-        const response = await fetch('http://localhost:5000/api/refills', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" required placeholder="e.g. 0781234567">
+
+            <label for="prescriptionDetails">Prescription Details</label>
+            <textarea name="prescriptionDetails" id="prescriptionDetails" required placeholder="List your medication(s) or instructions here."></textarea>
+
+            <label for="preferredPickupTime">Preferred Pickup Time</label>
+            <input type="text" name="preferredPickupTime" id="preferredPickupTime" required placeholder="e.g., Tomorrow at 3PM">
+
+            <button type="submit" class="cta-btn">Submit Refill Request</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Socius Pharmacy | Phone: +250 7817 34089 | Email: sociuspharmacy@gmail.com</p>
+            <p>Business Hours: Mon–Sat 7AM–10PM | Sun 9AM–8PM</p>
+            <ul>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const form = document.getElementById('refillForm');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('http://localhost:5000/api/refills', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                alert(result.message || "Refill request submitted successfully.");
+                form.reset();
+            } catch (err) {
+                alert("Submission failed. Please try again.");
+                console.error("Submission error:", err);
+            }
         });
-
-        const result = await response.json();
-        alert(result.message || "Refill request submitted successfully.");
-        form.reset();
-      } catch (err) {
-        alert("Submission failed. Please try again.");
-        console.error("Submission error:", err);
-      }
-    });
-  </script>
+    </script>
 
 </body>
 </html>

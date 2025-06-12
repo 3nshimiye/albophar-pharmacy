@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Your Basket | Socius Pharmacy</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+    <!-- Top Header Bar -->
+    <div class="top-bar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="Socius Pharmacy Logo"></a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="user-actions">
+            <a href="basket.html" class="active">Basket</a>
+            <a href="account.html">Account</a>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="refills.html">Prescription Refill</a></li>
+            <li><a href="theknownest.html">The KnowNest</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Basket Content -->
+    <main class="container">
+        <section class="basket-section">
+            <h1>Your Shopping Basket</h1>
+
+            <!-- Empty State -->
+            <div id="emptyBasketMessage">
+                <p>Your basket is currently empty.</p>
+                <a href="shop.html" class="cta-btn">Continue Shopping</a>
+            </div>
+
+            <!-- Basket Items Table -->
+            <div id="basketItems" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="basketTableBody">
+                        <!-- JavaScript will populate this -->
+                    </tbody>
+                </table>
+
+                <div class="basket-summary">
+                    <p><strong>Subtotal:</strong> <span id="basketSubtotal">RWF 0</span></p>
+                    <a href="checkout.html" class="cta-btn">Proceed to Checkout</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Socius Pharmacy | Phone: +250 7817 34089 | Email: sociuspharmacy@gmail.com</p>
+            <p>Business Hours: Mon–Sat 7AM – 10PM | Sun 9AM – 8PM</p>
+            <ul>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Future script.js -->
+    <script src="assets/script.js"></script>
+</body>
+</html>

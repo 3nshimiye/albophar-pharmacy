@@ -2,84 +2,75 @@
 <html lang="en">
 <head>
     <meta name="description" content="Socius Pharmacy - A partner you can trust for healthcare and wellness. Offering a wide range of pharmaceuticals and wellness products.">
-    <meta name="keywords" content="retail pharmacy, online pharmacy, community pharmacy, wellness, medications, pharmaceuticals, vitamins, supplements, Kigali City, Rwanda">   
+    <meta name="keywords" content="retail pharmacy, online pharmacy, community pharmacy, wellness, medications, pharmaceuticals, vitamins, supplements, Kigali City, Rwanda">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Socius Pharmacy</title>
+    <title>Socius Pharmacy | Payment</title>
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-    <!-- Header with navigation -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                &lt;&gt;
-                <li><a href="shop.html">Shop</a></li>
-                &lt;&gt;
-                <li><a href="refills.html">Prescription Refill</a></li>
-                &lt;&gt;
-                <li><a href="services.html">Services</a></li>
-                &lt;&gt;
-                <li><a href="theknownest.html">The KnowNest</a></li>
-                &lt;&gt;
-                <li><a href="contact.html">Contact us</a></li>
-            </ul>
-        </nav>
-    </header>>
-    
-    <!-- Hero -->
+    <!-- Top Header Bar -->
+    <div class="top-bar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="Socius Pharmacy Logo"></a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="user-actions">
+            <a href="basket.html">Basket</a>
+            <a href="account.html">Account</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="refills.html">Prescription Refill</a></li>
+            <li><a href="theknownest.html">The KnowNest</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>Payment Form</h1>
-        <p>Securely process your payment for Socius Pharmacy services.</p>
-        <p>Required fields are followed by
-            <strong><span aria-label="required">*</span></strong>.
-        </p>
-    </section>
-    
-    <!-- Payment Form Section -->
-    <section>
-        <h2>Payment Information</h2>
-        <p>
-            <label for="card">
-            <span>Card type:</span>
-            </label>
-            <select id="card" name="user-card">
-            <option value="visa">Visa</option>
-            <option value="mc">Mastercard</option>
-            <option value="amex">American Express</option>
-            </select>
-        </p>
-        <p>
-            <label for="number">
-            <span>Card number:</span>
-            <strong><span aria-label="required">*</span></strong>
-            </label>
-            <input type="tel" id="number" name="card-number" required />
-        </p>
-        <p>
-            <label for="expiration">
-            <span>Expiration date:</span>
-            <strong><span aria-label="required">*</span></strong>
-            </label>
-            <input
-                type="text"
-                id="expiration"
-                name="expiration"
-                required
-                placeholder="MM/YY"
-                pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" />
-        </p>
+        <h1>Secure Payment</h1>
+        <p>Process your payment securely for Socius Pharmacy products or services.</p>
+        <p>Required fields are marked with <strong>*</strong>.</p>
     </section>
 
-    <section>
-        <p>
-            <button type="submit">Validate the payment</button>
-        </p>
-    </section>
-    
+    <!-- Payment Form -->
+    <main class="form-container">
+        <h2>Payment Information</h2>
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="card">Card Type</label>
+                <select id="card" name="cardType" required>
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="amex">American Express</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="number">Card Number <span>*</span></label>
+                <input type="tel" id="number" name="cardNumber" required placeholder="1234 5678 9012 3456" pattern="\d{13,16}">
+            </div>
+
+            <div class="form-group">
+                <label for="expiration">Expiration Date (MM/YY) <span>*</span></label>
+                <input type="text" id="expiration" name="expiration" required placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/\d{2}$">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="cta-btn">Validate Payment</button>
+            </div>
+        </form>
+    </main>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -92,5 +83,15 @@
             </ul>
         </div>
     </footer>
+
+    <!-- Optional JS for form validation (expandable if needed later) -->
+    <script>
+        const form = document.getElementById('paymentForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert("Payment submitted (stub). This would connect to a secure payment processor.");
+            form.reset();
+        });
+    </script>
 </body>
 </html>

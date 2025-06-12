@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Account | Socius Pharmacy</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+    <!-- Top Header Bar -->
+    <div class="top-bar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/logo.png" alt="Socius Pharmacy Logo"></a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="user-actions">
+            <a href="basket.html">Basket</a>
+            <a href="account.html" class="active">Account</a>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="refills.html">Prescription Refill</a></li>
+            <li><a href="theknownest.html">The KnowNest</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Account Forms Section -->
+    <main class="container">
+        <section class="account-forms">
+            <div class="form-toggle">
+                <button id="showLogin" class="active">Login</button>
+                <button id="showRegister">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <h2>Login</h2>
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+
+                <button type="submit" class="cta-btn">Login</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" style="display: none;">
+                <h2>Create Account</h2>
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" name="registerName" required>
+
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" name="registerEmail" required>
+
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" name="registerPassword" required>
+
+                <button type="submit" class="cta-btn">Register</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Socius Pharmacy | Phone: +250 7817 34089 | Email: sociuspharmacy@gmail.com</p>
+            <p>Business Hours: Mon–Sat 7AM – 10PM | Sun 9AM – 8PM</p>
+            <ul>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Future script.js -->
+    <script src="assets/script.js"></script>
+</body>
+</html>
