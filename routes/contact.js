@@ -1,24 +1,13 @@
+// routes/contact.js
 const express = require('express');
 const router = express.Router();
-const ContactMessage = require('../models/ContactMessage');
+const { submitContactForm, getContacts } = require('../controllers/contactController');
+const { protect } = require('../middleware/authMiddleware');
 
-// POST route for handling contact form submissions
-router.post('/contact', async (req, res) => {
-    const { name, email, message } = req.body;
+// @route   POST /api/contact
+router.post('/', submitContactForm);
 
-    try {
-        const newMessage = new ContactMessage({
-            name,
-            email,
-            message,
-            date: new Date()
-        });
-
-        await newMessage.save();
-        res.status(200).send({ success: true, message: 'Message sent successfully!' });
-    } catch (err) {
-        res.status(500).send({ success: false, message: 'Error sending message.' });
-    }
-});
+// @route   GET /api/contact (Admin only)
+router.get('/', protect, getContacts);
 
 module.exports = router;

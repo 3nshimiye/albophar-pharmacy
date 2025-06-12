@@ -1,39 +1,32 @@
+// routes/refills.js
 const express = require('express');
 const router = express.Router();
-const Refill = require('../models/Refill');
-const upload = require('../middleware/uploadMiddleware'); // Import Multer middleware
+const multer = require('multer');
+const path = require('path');
+const {
+  submitRefill,
+  getRefills,
+  updateRefillStatus
+} = require('../controllers/refillController');
+const { protect } = require('../middleware/authMiddleware');
 
-// ✅ POST /api/refills - Create a new refill request with file upload
-router.post('/', upload.single('prescriptionFile'), async (req, res) => {
-    try {
-        const { patientName, phoneNumber, prescriptionDetails, preferredPickupTime } = req.body;
-        const prescriptionFile = req.file ? req.file.path : null;
-
-        const refill = new Refill({
-            patientName,
-            phoneNumber,
-            prescriptionDetails,
-            preferredPickupTime,
-            prescriptionFile
-        });
-
-        await refill.save();
-        res.status(201).json({ message: 'Refill request submitted successfully!' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Server error' });
-    }
+// Multer setup
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, 'uploads/refills/');
+  },
+  filename(req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
 });
 
-// ✅ GET /api/refills - Fetch all refill requests
-router.get('/', async (req, res) => {
-    try {
-        const refills = await Refill.find().sort({ createdAt: -1 });
-        res.json(refills);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Failed to fetch refills' });
-    }
-});
+const upload = multer({ storage });
+
+// Public - Submit refill
+router.post('/', upload.single('file'), submitRefill);
+
+// Admin - View and update refills
+router.get('/', protect, getRefills);
+router.put('/:id/status', protect, updateRefillStatus);
 
 module.exports = router;
